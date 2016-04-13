@@ -214,7 +214,6 @@ var Users = React.createClass({
     
     // 2. Sort groups
     groupedUsers.sort(groupCompare);
-    //console.log(groupedUsers);
     
     // Build JSX
     var userGroups = groupedUsers.map(function(userGroup) {
