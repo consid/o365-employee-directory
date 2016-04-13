@@ -10,7 +10,7 @@ const FILTER_KEYS = ['displayName', 'city', 'skills', 'department', 'phone']
 const GROUP_KEY = "city";
 const SORT_KEY = "displayName";
 
-var loadUserPictures = false;
+var loadUserPictures = true;
 var loadUserSkills = false;
 
 function compare(a,b) {
