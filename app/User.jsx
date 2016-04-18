@@ -3,7 +3,7 @@ var React = require('react');
 var User = React.createClass({
   render: function() {
       
-      var mailLink = "mailto://" + this.props.user.email;
+      var mailLink = "mailto:" + this.props.user.email;
       
     return (
       <div className="ms-Persona ms-Persona--lg">
