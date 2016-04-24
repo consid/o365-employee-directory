@@ -5,13 +5,14 @@ var User = require('./User.jsx');
 var SearchBar = require('./SearchBar.jsx')
 var q = require('q');
 var Immutable = require('immutable');
+var TimeCache = require('./cache/timecache.js')
 
 const FILTER_KEYS = ['displayName', 'city', 'skills', 'department', 'phone']
 const GROUP_KEY = "city";
 const SORT_KEY = "displayName";
 
 var loadUserPictures = true;
-var loadUserSkills = false;
+var loadUserDetails = true;
 
 function compare(a,b) {
   if (a[SORT_KEY] < b[SORT_KEY])
@@ -26,10 +27,6 @@ function groupCompare(a,b){
 if (a[0][GROUP_KEY] < b[0][GROUP_KEY]) return -1;
 if (a[0][GROUP_KEY] > b[0][GROUP_KEY]) return 1;
 return 0;
-}
-
-function groupCompare2(a,b){
-    return a[0][GROUP_KEY].localeCompare(b[0][GROUP_KEY]);
 }
 
 function groupBy( array , f )
@@ -53,6 +50,13 @@ function filterMatchUser(searchTerm, user) {
     var match = false;
     FILTER_KEYS.forEach(function(propertyName) {
         var value = user[propertyName];
+        
+        // If array, convert to flat string
+        if(Array.isArray(value)) {
+            value = value.join();
+        }
+        
+        // Search
         if(value != null && value.search(regex) > -1)
         {
             match = true;
@@ -64,9 +68,10 @@ function filterMatchUser(searchTerm, user) {
 
 function getUserPicture(userId) {
   var deferred = q.defer();
-
+  
   Adal.adalRequest({
-    url: 'https://graph.microsoft.com/beta/users/' + userId + '/photo/$value',
+    //url: 'https://graph.microsoft.com/beta/users/' + userId + '/photo/$value',
+    url: 'https://graph.microsoft.com/beta/users/' + userId + '/Photos/96X96/$value',
     dataType: 'blob'
   }).then(function(image) {
     var url = window.URL || window.webkitURL;
@@ -81,22 +86,44 @@ function getUserPicture(userId) {
   return deferred.promise;
 }
 
-function getUserSkills(userId) {
-    var deferred = q.defer();
-  Adal.adalRequest({
-    url: 'https://graph.microsoft.com/v1.0/users/' + userId + '?$select=skills',
+function getUserDetails(userId) {
+  var deferred = q.defer();
+  
+  var cachedDetails = TimeCache.get(userId);
+  
+  if(cachedDetails != null) {
+    deferred.resolve({
+        id: userId,
+        details: cachedDetails
+        });    
+  }
+  else {
+    Adal.adalRequest({
+    url: 'https://graph.microsoft.com/v1.0/users/' + userId + '?$select=skills,pastProjects',
     headers: {
         'Accept': 'application/json;odata.metadata=full'
       }
-  }).then(function(user) {
-    deferred.resolve({
-      id: userId,
-      skills: user.skills.join(", ")
-    });
-  }, function(err) {
-    deferred.reject(err);
-  });
-
+    }).then(function(userDetails) {
+        // Cache user details
+        var longDuration = Math.floor(12096e5 * Math.random()); // Max two weeks
+        var shortDuration = Math.floor(60000 * 10 * Math.random()); // Max ten minutes
+        var duration = shortDuration;
+        if(userDetails.skills.length > 0) {
+            // If user has stored skills, cache them longer
+            duration = longDuration;
+        }
+        TimeCache.set(userId, userDetails, duration);
+        
+        // Return value
+        deferred.resolve({
+        id: userId,
+        details: userDetails
+        });
+    }, function(err) {
+        deferred.reject(err);
+    });    
+  }
+  
   return deferred.promise;
 }
 
@@ -128,7 +155,7 @@ var Users = React.createClass({
       //url: 'https://graph.microsoft.com/v1.0/me?' +
       url: 'https://graph.microsoft.com/beta/users?' +
       //'&$expand=skills' +
-      '&$select=id,displayName,department,mail,city,country,mobile,businessPhones' +
+      '&$select=id,displayName,department,mail,city,country,businessPhones,mobilePhone' +
       //'&$select=skills' +
       '&$top=500' +
       '&$orderBy=displayName' +
@@ -148,10 +175,10 @@ var Users = React.createClass({
             displayName: userInfo.displayName,
             department: userInfo.department,
             email: userInfo.mail,
-            phone: userInfo.businessPhones[0],
+            phone: userInfo.mobilePhone || userInfo.businessPhones[0],
             city: userInfo.city || "۬ܢ No city",
             imageUrl: null,
-            skills: null
+            skills: []
           });
          
          if(loadUserPictures)
@@ -171,14 +198,14 @@ var Users = React.createClass({
             });
         }
       
-        if(loadUserSkills)
+        if(loadUserDetails)
         {
-            getUserSkills(userInfo.id).then(function(skillsInfo) {
+            getUserDetails(userInfo.id).then(function(userDetails) {
                 component.setState(function(previousState, curProps) {
                 for (var i = 0; i < previousState.users.length; i++) {
                     var u = previousState.users[i];
-                    if (u.id === skillsInfo.id) {
-                    u.skills = skillsInfo.skills;
+                    if (u.id === userDetails.id) {
+                    u.skills = userDetails.details['skills'] || [];
                     break;
                     }
                 }
@@ -193,9 +220,7 @@ var Users = React.createClass({
       this.setState({
           users: myUsers,
           filteredUsers: myUsers,
-        //users: Immutable.fromJS(myUsers).toList(),
-        //filteredUsers: Immutable.fromJS(myUsers).toList(),
-        loading: false
+          loading: false
       });
       
     }.bind(component));

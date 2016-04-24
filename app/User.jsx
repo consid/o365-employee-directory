@@ -4,6 +4,8 @@ var User = React.createClass({
   render: function() {
       
       var mailLink = "mailto:" + this.props.user.email;
+      var skills = this.props.user.skills.join(", ");
+      
       
     return (
       <div className="ms-Persona ms-Persona--lg">
@@ -14,7 +16,7 @@ var User = React.createClass({
         <div className="ms-Persona-details">
           <div className="ms-Persona-primaryText" title={this.props.user.displayName}><a href={mailLink} className="ms-Link" target="_blank">{this.props.user.displayName}</a></div>
           <div className="ms-Persona-secondaryText" title={this.props.user.phone}>{this.props.user.phone}</div>
-          <div className="ms-Persona-tertiaryText" title={this.props.user.skills}>{this.props.user.skills}</div>
+          <div className="ms-Persona-tertiaryText" title={skills}>{skills}</div>
         </div>
       </div>
     );
