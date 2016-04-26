@@ -1,6 +1,8 @@
 var React = require('react');
 
-var highlightedSkills = ["Episerver", "Sharepoint", "Projektledning", "Sitecore", "C#", "Java"];
+var Badge = require('./Badge.jsx')
+
+var highlightedSkills = ["Episerver", "Sharepoint", "Projektledning", "Sitecore", ".NET", "Java"];
 
 Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOfIgnoreCase(i) < 0;});
@@ -24,13 +26,20 @@ var User = React.createClass({
     
     if(primarySkills.length > 0) {
         //primarySkills = intersect_safe(highlightedSkills.sort(), this.props.user.skills.sort());
-        primarySkills = skills.intersection(highlightedSkills);
+        primarySkills = skills.intersection(highlightedSkills).sort();
     }
     
     skills = skills.diff(primarySkills);
     
     skills = skills.join(", ");
-    primarySkills = primarySkills.join(", ");
+    //primarySkills = primarySkills.join(", ");
+    
+    
+    
+    var skillBadges = primarySkills.map(function(skill) {
+        return ( <Badge key={skill} text={skill} /> );
+        });
+        
       
     return (
       <div className="ms-Persona ms-Persona--xl">
@@ -41,7 +50,7 @@ var User = React.createClass({
         <div className="ms-Persona-details">
           <div className="ms-Persona-primaryText" title={this.props.user.displayName}><a href={mailLink} className="ms-Link">{this.props.user.displayName}</a></div>
           <div className="ms-Persona-secondaryText" title={this.props.user.phone}>{this.props.user.phone}</div>
-          <div className="ms-Persona-tertiaryText" title={primarySkills}>{primarySkills}</div>
+          <div className="ms-Persona-tertiaryText2">{skillBadges}</div>
           <div className="ms-Persona-optionalText" title={skills}>{skills}</div>
         </div>
       </div>
