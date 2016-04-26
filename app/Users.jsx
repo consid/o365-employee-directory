@@ -11,7 +11,7 @@ const FILTER_KEYS = ['displayName', 'city', 'skills', 'department', 'phone']
 const GROUP_KEY = "city";
 const SORT_KEY = "displayName";
 
-var loadUserPictures = false;
+var loadUserPictures = true;
 var loadUserDetails = true;
 
 function compare(a,b) {
@@ -157,7 +157,7 @@ var Users = React.createClass({
       //'&$expand=skills' +
       '&$select=id,displayName,department,mail,city,country,businessPhones,mobilePhone' +
       //'&$select=skills' +
-      '&$top=50' +
+      '&$top=500' +
       '&$orderBy=displayName' +
       //'&$top=20',
       //'&$filter=City lt \'0\'',
