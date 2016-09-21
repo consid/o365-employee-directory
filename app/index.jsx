@@ -5,13 +5,15 @@ var Users = require('./Users.jsx');
 
 require('../node_modules/office-ui-fabric/dist/css/fabric.min.css');
 require('../node_modules/office-ui-fabric/dist/css/fabric.components.min.css');
-require('../css/styles.css');
+require('../assets/css/new-style.css');
+require('../assets/css/styles.css');
 
 var App = React.createClass({
   render: function() {
     return (
       <div>
-        <h1 className="ms-font-xxl">Company users</h1>
+      	<img src="assets/images/logo.svg" class="logo" alt="People Consid">
+    	<h1>People @ Consid</h1>
         <Users />
       </div>
     );

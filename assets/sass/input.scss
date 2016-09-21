@@ -1,0 +1,40 @@
+/**
+ * Input
+ *
+ * Description: ...
+ * Version: 1.0
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - searchbar
+ * -----------------------------------------------------------------------------
+ */
+
+
+/**
+ * 1.0 - searchbar
+ * -----------------------------------------------------------------------------
+ */
+
+.searchbar {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    padding-bottom: 20px;
+
+    .ms-SearchBox-field {
+        position: relative;
+        border-radius: 50px;
+        padding: 20px 20px 20px 35px;
+        width: 100%;
+    }
+    .fa {
+        position: absolute;
+        left: 15px;
+        top: 13px;
+    }
+}

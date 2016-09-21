@@ -1,0 +1,83 @@
+/**
+ * MS (MicroSoft styling)
+ *
+ * Description: ...
+ * Version: 1.0
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - ms-persona
+ * -----------------------------------------------------------------------------
+ */
+
+
+
+.ms-Persona {
+	margin: .5em;
+	display: inline-block;
+	width: 100%;
+
+	& * {
+		font-family: 'Source Sans Pro', sans-serif!important;
+	}
+
+	@media (max-width: $device-small-max) {
+		margin: .5em 0;
+	}
+
+	@media (max-width: $device-smaller-max) {
+		width: 100%;
+		text-align: center;
+	}
+
+	&.ms-Persona--xl {
+		.ms-Persona-imageArea {
+			@media (max-width: $device-small-max) {
+				display: inline-block;
+			}
+		}
+
+		.ms-Persona-details {
+		    text-align: left;
+
+		    @media (max-width: $device-small-max) {
+		    	text-align: left;
+		    }
+		    @media (max-width: $device-smaller-max) {
+		    	text-align: center;
+		    	padding: 0;
+		    	width: 100%;
+		    	
+		    	& * {
+		    		display: inline-block;
+		    	}
+		    }
+		    .ms-Persona-tertiaryText2 {
+			    .badge {
+			    	padding: 10px;
+		    	    letter-spacing: 0.1em;
+	    	        font-weight: 300;
+			    }
+
+		    	@media (max-width: $device-small-max) {
+		    		display: block;
+		    	}
+		    }
+		}
+	}
+	
+}
+.ms-Persona-initials {
+	font-weight: 300;
+}
+.ms-Persona-imageArea {
+	vertical-align: middle;
+	display: inline-block;
+}
+.ms-Persona-details {
+	display: inline-block;
+	text-align: left;
+}

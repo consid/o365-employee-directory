@@ -1,0 +1,147 @@
+/**
+ * Variables
+ *
+ * Description: Contains Sass variables
+ * Version: 1.1.1
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents: 
+ *
+ * 1.0 - Colors
+ * 2.0 - Responsivness and sizes
+ * 3.0 - Typography
+ * 4.0 - Other
+ * -----------------------------------------------------------------------------
+ */
+
+
+/**
+ * 1.0 - Colors
+ * -----------------------------------------------------------------------------
+ */
+
+$black:							#000;
+$white:							#fff;
+$orange:						#8acfa0;
+$grey:							#666;
+$grey-light:					#ccc;
+$grey-lighter:					#d8d8d8;
+$grey-lightest:					#f6f6f6;
+$red:							#ff0000;
+
+
+$accent-color:					$orange;
+$accent-color-dark:				$red;
+$accent-color-negative:			$grey-light;
+$accent-color-negative-dark:	$grey-light;
+
+$text-color:					$black;
+$text-color-light:				$grey;
+$link-color:					$orange;
+
+$error-color:					$red;
+$nav-selected-bg:				$grey-lightest;
+$nav-selected-color:			$orange;
+
+
+
+/**
+ * 2.0 - Responsivness and sizes
+ * -----------------------------------------------------------------------------
+ */
+
+// Large (desktop)
+$device-large-max:				1080px;
+$device-large-min:				1024px;
+
+// Medium (tablet)
+$device-medium-max:				1024px;
+$device-medium-min:				768px;
+
+// Small (phone)
+$device-small-max:				767px;
+$device-small-min:				0px;
+
+// Smaller (phone)
+$device-smaller-max:			360px;
+$device-smaller-min:			0px;
+
+
+
+/**
+ * 3.0 - Typography
+ * -----------------------------------------------------------------------------
+ */
+
+// Font family
+$font-family-base:				'Roboto Mono', monospace, 'Raleway', Helvetica Neue, Helvetica, Arial, sans-serif;
+$font-family-alt:				'Roboto Mono', monospace, 'Raleway', Georgia, serif;
+
+// Breakpoints
+$typography-breakpoints: (
+	small: $device-small-min,
+	medium: $device-medium-min,
+	large: $device-large-min
+);
+
+// Base font-size
+$font-size-base:				125%; // 20px
+$font-size-base-pixel:			20px;
+
+// Base typography
+$line-height-standard:			1.3em;
+$line-height-standard-pixel:	26px;
+
+// Header font-sizes
+// Example: small: (font-size, line-height, margin-bottom, padding-top) (We use padding-top beacues if we used margins they would collapse into each other.)
+$h1-sizes: (
+	small: (38px, 53px, 20px),
+	medium: (40px, 72px, 24px)
+);
+$h1-small-sizes: (
+	small: (34px, 48px, 24px),
+	medium: (36px, 48px, 24px)
+);
+$h2-sizes: (
+	small: (26px, 48px, 12px),
+	medium: (32px, 64px, 16px)
+);
+$h3-sizes: (
+	small: (22px, 45px, 12px),
+	medium: (26px, 56px, 16px)
+);
+$h4-sizes: (
+	small: (18px, 45px, 12px),
+	medium: (20px, 48px, 16px)
+);
+$h5-sizes: (
+	small: (16px, 40px, 12px),
+	medium: (16px, 40px, 16px)
+);
+$h6-sizes: (
+	small: (14px, 32px, 12px),
+	medium: (14px, 32px, 16px)
+);
+
+// Paragraph font-sizes
+$p-sizes: (
+	null: (20px, 28px, 20px)
+);
+$p-small-sizes: (
+	null: (16px, 28px, 32px)
+);
+
+
+
+/**
+ * 4.0 - Other
+ * -----------------------------------------------------------------------------
+ */
+
+$margin-standard:				1em; // 20px
+$margin-standard-pixel:			20px;
+$transition-time: 				0.4s;
+$transition-time-short:			0.2s;
+$border-radius:	 				4px;

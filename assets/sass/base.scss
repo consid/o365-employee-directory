@@ -1,0 +1,26 @@
+/**
+ * Base
+ *
+ * Description: Contains the grid-system.
+ * Version: 1.0
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Base
+ * -----------------------------------------------------------------------------
+ */
+
+
+body {
+	overflow-x: hidden;
+	margin: 0;
+	display: block;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+}

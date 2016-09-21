@@ -246,7 +246,7 @@ var Users = React.createClass({
         
         var users = userGroup.map(function(user) {
         return (
-            <div className="ms-Grid-col ms-u-sm3" key={user.id}>
+            <div className="ms-Grid-col layout-small-size1of1 layout-medium-size1of2 layout-large-size1of2 layout-size1of3 center" key={user.id}>
                 <User user={user} />
             </div>
             );
@@ -256,10 +256,12 @@ var Users = React.createClass({
             <div key={title}>
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-u-sm12">
-                        <h2 className="ms-font-xl">{title}</h2>
+                        <h2 className="ms-font-xl center">{title}</h2>
                     </div>
                     <div className="ms-Grid-row">
+                      <div class="ms-Grid-col ms-u-sm12">
                         {users}
+                      </div>
                     </div>
                 </div>
             </div>
