@@ -259,7 +259,7 @@ var Users = React.createClass({
                         <h2 className="ms-font-xl center">{title}</h2>
                     </div>
                     <div className="ms-Grid-row">
-                      <div class="ms-Grid-col ms-u-sm12">
+                      <div className="ms-Grid-col ms-u-sm12">
                         {users}
                       </div>
                     </div>
