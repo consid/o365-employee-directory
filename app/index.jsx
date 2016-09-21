@@ -12,9 +12,13 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      	<img src="assets/images/logo.svg" class="logo" alt="People Consid">
-    	<h1>People @ Consid</h1>
-        <Users />
+      	<header>
+          <div class="logo">
+            <img src="assets/images/logo.svg" alt="People Consid">
+            <h1>people</h1>
+            <h6>find heroes @ consid</h6>
+          </div>
+        </header>
       </div>
     );
   }
