@@ -12,7 +12,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      	<img src="assets/images/logo.svg" class="logo" alt="People Consid" />
+      	<img src="assets/images/logo.svg" className="logo" alt="People Consid" />
     	<h1>People @ Consid</h1>
         <Users />
       </div>
