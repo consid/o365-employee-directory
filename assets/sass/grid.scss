@@ -1,0 +1,116 @@
+/**
+ * Grid
+ *
+ * Description: Contains the grid-system.
+ * @see: http://oocss.org/grids_docs.html
+ * Version: 1.1.0
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Layout classes
+ * 2.0 - Layout grid
+ * -----------------------------------------------------------------------------
+ */
+
+
+/**
+ * 1.0 - Layout classes
+ * -----------------------------------------------------------------------------
+ */
+
+.clearfix {
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+.layout-left {
+	float: left;
+}
+.layout-right {
+	float: right;
+}
+
+/**
+ * 4.0 - Layout grid
+ * -----------------------------------------------------------------------------
+ */
+
+// Base settings
+[class^="layout-size"], [class*=" layout-size"], 
+[class^="layout-medium-size"], [class*=" layout-medium-size"], 
+[class^="layout-small-size"], [class*=" layout-small-size"] {
+	position: relative;
+	float: left;
+
+	.layout-unit-container > & {
+		display: inline-block;
+		vertical-align: top;
+		float: none;
+	}
+}
+
+// Standard grid
+.layout-size1of1 { width: 100%; }
+.layout-size1of2 { width: 50%; }
+.layout-size1of3 { width: 33.33333%; }
+.layout-size2of3 { width: 66.66666%; }
+.layout-size1of4 { width: 25%; }
+.layout-size3of4 { width: 75%; }
+.layout-size1of5 { width: 20%; }
+.layout-size2of5 { width: 40%; }
+.layout-size3of5 { width: 60%; }
+.layout-size4of5 { width: 80%; }
+
+
+// Grid for large devices
+@media (min-width: $device-large-min) and (max-width: $device-large-max) {
+	.layout-large-size1of1 { width: 100%; }
+	.layout-large-size1of2 { width: 50%; }
+	.layout-large-size1of3 { width: 33.33333%; }
+	.layout-large-size2of3 { width: 66.66666%; }
+	.layout-large-size1of4 { width: 25%; }
+	.layout-large-size3of4 { width: 75%; }
+	.layout-large-size1of5 { width: 20%; }
+	.layout-large-size2of5 { width: 40%; }
+	.layout-large-size3of5 { width: 60%; }
+	.layout-large-size4of5 { width: 80%; }
+}
+
+// Grid for medium devices
+@media (min-width: $device-medium-min) and (max-width: $device-medium-max) {
+	.layout-medium-size1of1 { width: 100%; }
+	.layout-medium-size1of2 { width: 50%; }
+	.layout-medium-size1of3 { width: 33.33333%; }
+	.layout-medium-size2of3 { width: 66.66666%; }
+	.layout-medium-size1of4 { width: 25%; }
+	.layout-medium-size3of4 { width: 75%; }
+	.layout-medium-size1of5 { width: 20%; }
+	.layout-medium-size2of5 { width: 40%; }
+	.layout-medium-size3of5 { width: 60%; }
+	.layout-medium-size4of5 { width: 80%; }
+}
+
+// Grid for small devices
+@media (max-width: $device-small-max) {
+	[class^="layout-size"], [class*=" layout-size"] { width: 100%; float: none; } 
+
+	.layout-small-size1of1 { width: 100%; }
+	.layout-small-size1of2 { width: 50%; }
+	.layout-small-size1of3 { width: 33.33333%; }
+	.layout-small-size2of3 { width: 66.66666%; }
+	.layout-small-size1of4 { width: 25%; }
+	.layout-small-size3of4 { width: 75%; }
+	.layout-small-size1of5 { width: 20%; }
+	.layout-small-size2of5 { width: 40%; }
+	.layout-small-size3of5 { width: 60%; }
+	.layout-small-size4of5 { width: 80%; }
+}
