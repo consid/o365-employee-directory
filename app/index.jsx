@@ -7,15 +7,12 @@ require('../node_modules/office-ui-fabric/dist/css/fabric.min.css');
 require('../node_modules/office-ui-fabric/dist/css/fabric.components.min.css');
 require('../assets/css/new-style.css');
 require('../assets/css/styles.css');
+require('../node_modules/font-awesome/less/font-awesome.less');
 
 var App = React.createClass({
   render: function() {
     return (
-      <div>
-      	<img src="assets/images/logo.svg" className="logo" alt="People Consid" />
-    	<h1>People @ Consid</h1>
         <Users />
-      </div>
     );
   }
 });
