@@ -4,7 +4,7 @@ var Loading = React.createClass({
   render: function() {
     return (
       <div className="spinner">
-        <img src={'images/ajax-loader.gif'} /> <span className="ms-font-s-plus">Loading...</span>
+        <img src={'assets/images/ajax-loader.gif'} /> <span className="ms-font-s-plus">Loading...</span>
       </div>
     );
   }
