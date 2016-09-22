@@ -1,0 +1,479 @@
+/**
+ * Mixins
+ *
+ * Description: Contains Sass mixins
+ * Version: 1.1.4
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Clearfix
+ * 2.0 - Border Radius
+ * 3.0 - Transition
+ * 4.0 - Box sizing
+ * 5.0 - Gradients
+ * 6.0 - Opacity
+ * 7.0 - Drop shadows
+ * 8.0 - Reset list
+ * 9.0 - Link color
+ * 10.0 - Arrow
+ * 11.0 - List with separator
+ * 12.0 - Add extensions
+ * 13.0 - Vertical align
+ * 14.0 - Font size
+ *   14.1 - Make font size (helper)
+ * 15 - user-select
+ * 16 - scale
+ * 17 - placeholder
+ * 18 - Rotate
+ * -----------------------------------------------------------------------------
+ */
+
+
+/**
+ * 1.0 - Clearfix
+ *
+ * Description: For clearing floats
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+
+
+/**
+ * 2.0 - Border Radius
+ *
+ * Description: Creates border-radius with browser prefix.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+
+
+/**
+ * 3.0 - Transition
+ *
+ * Description: Creates transition with browser prefix.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+
+
+/**
+ * 4.0 - Box sizing
+ *
+ * Description: Sets box-sizing with browser prefix.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin box-sizing($boxmodel) {
+  -webkit-box-sizing: $boxmodel;
+     -moz-box-sizing: $boxmodel;
+          box-sizing: $boxmodel;
+}
+
+
+
+/**
+ * 5.0 - Gradient-vertical
+ *
+ * Description: Creates gradient-vertical with browser prefix.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin gradient-vertical($startColor: #555, $endColor: #333) {
+	background-color: mix($startColor, $endColor, 60%);
+	background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+	background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+	background-image: linear-gradient(to bottom, $startColor, $endColor); // Standard, IE10
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}', GradientType=0); // IE9 and down
+}
+
+
+
+/**
+ * 6.0 - Opacity
+ *
+ * Description: Sets opacity with IE fallback.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin opacity($opacity) {
+	opacity: $opacity / 100;
+	filter: alpha(opacity=$opacity);
+}
+
+
+
+/**
+ * 7.0 - Drop shadows
+ *
+ * Description: Creates box-shadow with browser prefix.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+
+
+/**
+ * 8.0 - Reset list
+ *
+ * Description: Reset the styles of a list
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin resetList() {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/**
+ * 9.0 - Link color
+ *
+ * Description: Sets a color for a link, with hover and active.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin linkColor($color, $darken: true) {
+	color: $color;
+	&:hover {
+		@if $darken { color: darken($color, 15%); }
+		@else { color: lighten($color, 50%); }
+		text-decoration: none;
+	}
+	&:active, &:visited {
+		color: $color;
+		text-decoration: none;
+	}
+}
+
+
+
+/**
+ * 10.0 - Arrow
+ *
+ * Description: Creates an arrow on a element.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin arrow($color, $size, $pos: "left", $inset: false) {
+	position: relative;
+
+	&:after, &:before {
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		@if $pos == "top" {
+			left: 50%;			
+			@if $inset { 
+				top: 0;
+				border-top-color: $color !important;
+			}
+			@else {
+				bottom: 100%;
+				border-bottom-color: $color !important;
+			}
+		}
+		@else if $pos == "right" {
+			top: 50%;
+			@if $inset { 
+				right: 0;
+				border-right-color: $color !important;
+			}
+			@else {
+				left: 100%;
+				border-left-color: $color !important;
+			}
+		}
+		@else if $pos == "bottom" {
+			left: 50%;
+			@if $inset { 
+				bottom: 0;
+				border-bottom-color: $color !important;
+			}
+			@else {
+				top: 100%;
+				border-top-color: $color !important;
+			}
+		}
+		@else if $pos == "left" {
+			top: 50%;
+			@if $inset { 
+				left: 0;
+				border-left-color: $color !important;
+			}
+			@else {
+				right: 100%;
+				border-right-color: $color !important;
+			}
+		}		
+	}
+	&:after {
+		border-color: transparent;
+		border-width: $size;
+		@if $pos == "top" { margin-left: $size - ($size * 2); }
+		@else if $pos == "right" { margin-top: $size - ($size * 2); }
+		@else if $pos == "bottom" { margin-left: $size - ($size * 2); }
+		@else if $pos == "left" { margin-top: $size - ($size * 2); }
+	}
+	&:before {
+		border-color: transparent;
+		border-width: ($size + 1);
+		@if $pos == "top" { margin-left: ($size + 1) - (($size + 1) * 2); }
+		@else if $pos == "right" { margin-top: ($size + 1) - (($size + 1) * 2); }
+		@else if $pos == "bottom" { margin-left: ($size + 1) - (($size + 1) * 2); }
+		@else if $pos == "left" { margin-top: ($size + 1) - (($size + 1) * 2); }
+	}
+}
+
+
+
+/**
+ * 11.0 - List with separator
+ *
+ * Description: Creates seperators for each list-element.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin listWithSep($sep: ',', $lastChildSep: ',', $spaceBefore: 0.35em, $spaceAfter: 0.2em) {
+	li {
+		display: inline;
+		padding-right: $spaceAfter;
+
+		&:before {
+			content: $sep;
+			padding-right: $spaceBefore;
+		}
+		&:first-child:before {
+			content: '';
+			padding-right: 0;
+		}
+		&:last-child:before {
+			content: $lastChildSep;
+		}
+	}
+}
+
+
+
+/**
+ * 12.0 - Add extensions
+ *
+ * Description: Adds fontawesome icons to links based on the filetyper they are linking to.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin addExtensions ($place: 'after') {
+	$before: " " !default;
+	$after: "" !default;
+
+	@if $place == "after" {
+		$before: " ";
+		$after: "";
+	} @else {
+		$before: "";
+		$after: " ";
+	}
+
+	&[href$=".pdf"]:#{$place} {
+		content: $before + $fa-var-file-pdf-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".xls"]:#{$place}, &[href$=".xlsx"]:#{$place}, &[href$=".xlt"]:#{$place}, &[href$=".xlm"]:#{$place} {
+		content: $before + $fa-var-file-excel-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".mp3"]:#{$place}, &[href$=".wav"]:#{$place} {
+		content: $before + $fa-var-file-audio-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".doc"]:#{$place}, &[href$=".dot"]:#{$place}, &[href$=".docx"]:#{$place}, &[href$=".docm"]:#{$place}, &[href$=".dotx"]:#{$place}, &[href$=".dotm"]:#{$place}, &[href$=".docb"]:#{$place} {
+		content: $before + $fa-var-file-word-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".zip"]:#{$place}, &[href$=".rar"]:#{$place}, &[href$=".gz"]:#{$place} {
+		content: $before + $fa-var-file-archive-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".txt"]:#{$place} {
+		content: $before + $fa-var-file-text-o + $after;
+		@include fontAwesome();
+	}
+	&[href$=".ppt"]:#{$place}, &[href$=".pps"]:#{$place} {
+		content: $before + $fa-var-file-powerpoint-o + $after;
+		@include fontAwesome();
+	}
+}
+
+
+
+/**
+ * 13.0 - Vertical align
+ *
+ * Description: Vertically centers content.
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin vertical-align() {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+
+
+/**
+ * 14.0 - Font size
+ *
+ * Description: Handeling font-sizes with responsivness.
+ * @See: http://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin font-size($fs-map, $fs-breakpoints: $typography-breakpoints) {
+	@each $fs-breakpoint, $fs-font-size in $fs-map {
+		@if $fs-breakpoint == null {
+			@include make-font-size($fs-font-size);
+		}
+		@else {
+			// If $fs-font-size is a key that exists in
+			// $fs-breakpoints, use the value
+			@if map-has-key($fs-breakpoints, $fs-breakpoint) {
+				$fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
+			}
+			@media all and (min-width: $fs-breakpoint) {
+				@include make-font-size($fs-font-size);
+			}
+		}
+	}
+}
+
+
+/**
+ * 14.1 - Make font size
+ *
+ * Description: Utility function for mixin font-size
+ * @See: http://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin make-font-size($fs-font-size) {
+	// If $fs-font-size is a list, include
+	// both font-size and line-height
+	@if type-of($fs-font-size) == "list" {
+		font-size: em(nth($fs-font-size, 1));
+		margin-top: 0;
+
+		@if (length($fs-font-size) > 1) {
+			line-height: em(nth($fs-font-size, 2), nth($fs-font-size, 1));
+		}
+		@if (length($fs-font-size) > 2) {
+			margin-bottom: em(nth($fs-font-size, 3), nth($fs-font-size, 1));
+		}
+		@if (length($fs-font-size) > 3) {
+			padding-top: em(nth($fs-font-size, 4), nth($fs-font-size, 1));
+		}
+	}
+	@else {
+		font-size: em($fs-font-size);
+	}
+}
+
+/**
+ * 15 - User-select
+ *
+ * Description: user-selection
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin user-select($user-select) {
+	-webkit-touch-callout: $user-select;
+	-webkit-user-select: $user-select;
+	-khtml-user-select: $user-select;
+	-moz-user-select: $user-select;
+	-ms-user-select: $user-select;
+	user-select: $user-select;
+}
+
+
+/**
+ * 16 - Scale
+ *
+ * Description: scale (zooming in)
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin scale($scale) {
+	-ms-transform: scale($scale); /* IE 9 */
+    -webkit-transform: scale($scale); /* Chrome, Safari, Opera */
+    transform: scale($scale);
+}
+
+/**
+ * 17 - Placeholder
+ *
+ * Description: scale (zooming in)
+ * -----------------------------------------------------------------------------
+ */
+
+@mixin placeholder {
+	&.placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&::-webkit-input-placeholder { @content; }
+}
+
+
+/**
+ * 18 - Rotate
+ *
+ * Description: scale (zooming in)
+ * -----------------------------------------------------------------------------
+ */
+
+
+@mixin rotate($rotate) {
+	-ms-transform: rotate($rotate); /* IE 9 */
+    -webkit-transform: rotate($rotate); /* Chrome, Safari, Opera */
+    transform: rotate($rotate);
+}

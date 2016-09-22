@@ -1,0 +1,56 @@
+/**
+ * Typography
+ *
+ * Description: ...
+ * Version: 1.0
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Fonts
+ * 2.0 - Headings
+ * -----------------------------------------------------------------------------
+ */
+
+
+ /**
+ * 1.0 - Fonts
+ * -----------------------------------------------------------------------------
+ */
+
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700';
+
+@font-face {
+  font-family: 'brusher';
+  src: url('../fonts/font-consid/Brusher-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/font-consid/Brusher-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/font-consid/Brusher-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/font-consid/Brusher-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/font-consid/Brusher-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+/**
+ * 2.0 - Headings
+ * -----------------------------------------------------------------------------
+ */
+
+h1 {
+	font-size: 3em;
+}
+h2 {
+	font-size: 2.5em;
+}
+h3 {
+	font-size: 2.0em;
+}
+h4 {
+	font-size: 1.5em;	
+}
+h5 {
+	font-size: 1.0em;	
+}
+h6 {
+	font-size: 0.9em;
+}
