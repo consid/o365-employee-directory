@@ -255,7 +255,7 @@ var Users = React.createClass({
         return (
             <div key={title}>
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-u-sm12">
+                    <div className="ms-Grid-col ms-u-sm12 center">
                         <h2 className="ms-font-xl center">{title}</h2>
                     </div>
                     <div className="ms-Grid-row">
