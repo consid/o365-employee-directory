@@ -97,7 +97,7 @@
 * 1.0 - Fonts
 * -----------------------------------------------------------------------------
 */
-@font-face { font-family: 'brusher'; src: url("../fonts/font-consid/Brusher-Regular.otf") format("opentype"); }
+@font-face { font-family: 'brusher'; src: url("../fonts/font-consid/Brusher-Regular.woff") format("opentype"); }
 /** 2.0 - Headings ----------------------------------------------------------------------------- */
 h1 { font-size: 3em; }
 
