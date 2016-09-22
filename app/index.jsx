@@ -12,7 +12,16 @@ require('../node_modules/font-awesome/less/font-awesome.less');
 var App = React.createClass({
   render: function() {
     return (
+      <div>
+      	<header>
+            <div className="logo">
+              <img src="assets/images/logo.svg" alt="People Consid" />
+              <h1>people</h1>
+              <h6>find heroes @ consid</h6>
+            </div>
+        </header>
         <Users />
+      </div>
     );
   }
 });
