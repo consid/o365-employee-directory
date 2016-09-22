@@ -171,7 +171,6 @@ var Users = React.createClass({
       var myUsers = [];
     
        data.value.forEach(function(userInfo) {
-          console.log(userInfo);
        if(userInfo.accountEnabled == true && userInfo.mail != null && userInfo.mail.indexOf("consid.se") !== -1
        && userInfo.assignedLicenses.length > 0)
        { 
