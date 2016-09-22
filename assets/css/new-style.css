@@ -4,11 +4,31 @@
 /** 2.0 - Responsivness and sizes ----------------------------------------------------------------------------- */
 /** 3.0 - Typography ----------------------------------------------------------------------------- */
 /** 4.0 - Other ----------------------------------------------------------------------------- */
-/** Fonts  Description: ... Version: 1.0 ----------------------------------------------------------------------------- */
-@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700";
+/** Mixins  Description: Contains Sass mixins Version: 1.1.4 ----------------------------------------------------------------------------- */
+/** Table of Contents:  1.0 - Clearfix 2.0 - Border Radius 3.0 - Transition 4.0 - Box sizing 5.0 - Gradients 6.0 - Opacity 7.0 - Drop shadows 8.0 - Reset list 9.0 - Link color 10.0 - Arrow 11.0 - List with separator 12.0 - Add extensions 13.0 - Vertical align 14.0 - Font size 14.1 - Make font size (helper) 15 - user-select 16 - scale 17 - placeholder 18 - Rotate ----------------------------------------------------------------------------- */
+/** 1.0 - Clearfix  Description: For clearing floats ----------------------------------------------------------------------------- */
+/** 2.0 - Border Radius  Description: Creates border-radius with browser prefix. ----------------------------------------------------------------------------- */
+/** 3.0 - Transition  Description: Creates transition with browser prefix. ----------------------------------------------------------------------------- */
+/** 4.0 - Box sizing  Description: Sets box-sizing with browser prefix. ----------------------------------------------------------------------------- */
+/** 5.0 - Gradient-vertical  Description: Creates gradient-vertical with browser prefix. ----------------------------------------------------------------------------- */
+/** 6.0 - Opacity  Description: Sets opacity with IE fallback. ----------------------------------------------------------------------------- */
+/** 7.0 - Drop shadows  Description: Creates box-shadow with browser prefix. ----------------------------------------------------------------------------- */
+/** 8.0 - Reset list  Description: Reset the styles of a list ----------------------------------------------------------------------------- */
+/** 9.0 - Link color  Description: Sets a color for a link, with hover and active. ----------------------------------------------------------------------------- */
+/** 10.0 - Arrow  Description: Creates an arrow on a element. ----------------------------------------------------------------------------- */
+/** 11.0 - List with separator  Description: Creates seperators for each list-element. ----------------------------------------------------------------------------- */
+/** 12.0 - Add extensions  Description: Adds fontawesome icons to links based on the filetyper they are linking to. ----------------------------------------------------------------------------- */
+/** 13.0 - Vertical align  Description: Vertically centers content. ----------------------------------------------------------------------------- */
+/** 14.0 - Font size  Description: Handeling font-sizes with responsivness. @See: http://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/ ----------------------------------------------------------------------------- */
+/** 14.1 - Make font size  Description: Utility function for mixin font-size @See: http://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/ ----------------------------------------------------------------------------- */
+/** 15 - User-select  Description: user-selection ----------------------------------------------------------------------------- */
+/** 16 - Scale  Description: scale (zooming in) ----------------------------------------------------------------------------- */
+/** 17 - Placeholder  Description: scale (zooming in) ----------------------------------------------------------------------------- */
+/** 18 - Rotate  Description: scale (zooming in) ----------------------------------------------------------------------------- */
 /** Grid  Description: Contains the grid-system. @see: http://oocss.org/grids_docs.html Version: 1.1.0 ----------------------------------------------------------------------------- */
 /** Table of Contents:  1.0 - Layout classes 2.0 - Layout grid ----------------------------------------------------------------------------- */
 /** 1.0 - Layout classes ----------------------------------------------------------------------------- */
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700";
 .clearfix:before, .clearfix:after { display: table; content: ""; line-height: 0; }
 .clearfix:after { clear: both; }
 
@@ -71,6 +91,26 @@
   .layout-small-size2of5 { width: 40%; }
   .layout-small-size3of5 { width: 60%; }
   .layout-small-size4of5 { width: 80%; } }
+/** Typography  Description: ... Version: 1.0 ----------------------------------------------------------------------------- */
+/** Table of Contents:  1.0 - Fonts 2.0 - Headings ----------------------------------------------------------------------------- */
+/**
+* 1.0 - Fonts
+* -----------------------------------------------------------------------------
+*/
+@font-face { font-family: 'brusher'; src: url("../fonts/font-consid/Brusher-Regular.otf") format("opentype"); }
+/** 2.0 - Headings ----------------------------------------------------------------------------- */
+h1 { font-size: 3em; }
+
+h2 { font-size: 2.5em; }
+
+h3 { font-size: 2.0em; }
+
+h4 { font-size: 1.5em; }
+
+h5 { font-size: 1.0em; }
+
+h6 { font-size: 0.9em; }
+
 /** Base  Description: Contains the grid-system. Version: 1.0 ----------------------------------------------------------------------------- */
 /** Table of Contents:  1.0 - Base ----------------------------------------------------------------------------- */
 body { overflow-x: hidden; margin: 0; display: block; font-family: 'Source Sans Pro', sans-serif; }
@@ -83,9 +123,7 @@ body { overflow-x: hidden; margin: 0; display: block; font-family: 'Source Sans 
 
 /** MS (MicroSoft styling)  Description: ... Version: 1.0 ----------------------------------------------------------------------------- */
 /** Table of Contents:  1.0 - ms-persona ----------------------------------------------------------------------------- */
-.ms-Persona { margin: .5em; display: inline-block; width: 100%; }
-.ms-Persona * { font-family: "Source Sans Pro", sans-serif !important; }
-@media (max-width: 767px) { .ms-Persona { margin: .5em 0; } }
+.ms-Persona { margin: 1.5em 0; display: inline-block; width: 100%; }
 @media (max-width: 360px) { .ms-Persona { width: 100%; text-align: center; } }
 @media (max-width: 767px) { .ms-Persona.ms-Persona--xl .ms-Persona-imageArea { display: inline-block; } }
 .ms-Persona.ms-Persona--xl .ms-Persona-details { text-align: left; }
@@ -94,12 +132,14 @@ body { overflow-x: hidden; margin: 0; display: block; font-family: 'Source Sans 
   .ms-Persona.ms-Persona--xl .ms-Persona-details * { display: inline-block; } }
 .ms-Persona.ms-Persona--xl .ms-Persona-details .ms-Persona-tertiaryText2 .badge { padding: 10px; letter-spacing: 0.1em; font-weight: 300; }
 @media (max-width: 767px) { .ms-Persona.ms-Persona--xl .ms-Persona-details .ms-Persona-tertiaryText2 { display: block; } }
+.ms-Persona .ms-Persona-imageArea { vertical-align: middle; display: inline-block; border: 2px solid #efefef; box-sizing: border-box; }
+.ms-Persona .ms-Persona-imageArea .ms-Persona-initials { font-weight: 300; background: transparent; color: #231f20; font-size: 38px; line-height: 94px; }
+.ms-Persona .ms-Persona-imageArea .ms-Persona-image { width: 102px !important; height: 102px !important; top: -1px; left: -1px; }
+.ms-Persona .ms-Persona-details { display: inline-block; text-align: left; }
+.ms-Persona .ms-Link { color: #231f20; }
+.ms-Persona .ms-Link:hover, .ms-Persona .ms-Link:active, .ms-Persona .ms-Link:focus { color: #635a5c; }
 
-.ms-Persona-initials { font-weight: 300; }
-
-.ms-Persona-imageArea { vertical-align: middle; display: inline-block; }
-
-.ms-Persona-details { display: inline-block; text-align: left; }
+.ms-font-xl { border-bottom: 1px solid #cecece; padding-bottom: 15px; display: inline-block; color: #888; }
 
 /** Extra  Description: stuff with special classes Version: 1.0 ----------------------------------------------------------------------------- */
 /** Table of Contents:  1.0 - spinner ----------------------------------------------------------------------------- */
@@ -111,11 +151,17 @@ body { overflow-x: hidden; margin: 0; display: block; font-family: 'Source Sans 
 /** Table of Contents:  1.0 - searchbar ----------------------------------------------------------------------------- */
 /** 1.0 - searchbar ----------------------------------------------------------------------------- */
 .searchbar { position: relative; display: inline-block; width: 100%; max-width: 400px; padding-bottom: 20px; }
-.searchbar .ms-SearchBox-field { position: relative; border-radius: 50px; padding: 20px 20px 20px 35px; width: 100%; }
-.searchbar .fa { position: absolute; left: 15px; top: 13px; }
+.searchbar .ms-SearchBox-field { position: relative; border-radius: 50px; padding: 20px 40px 20px 20px; line-height: 40px; width: 100%; background: #efefef; border: 0; font-size: 1.1em; }
+.searchbar .ms-SearchBox-field.placeholder { color: #777; }
+.searchbar .ms-SearchBox-field:-moz-placeholder { color: #777; }
+.searchbar .ms-SearchBox-field::-moz-placeholder { color: #777; }
+.searchbar .ms-SearchBox-field::-webkit-input-placeholder { color: #777; }
+.searchbar .fa { position: absolute; right: 20px; top: 13px; z-index: 3; color: #777; }
 
 /** Header  Description: stuff with special classes Version: 1.0 ----------------------------------------------------------------------------- */
 /** Table of Contents:  1.0 - Header ----------------------------------------------------------------------------- */
-header { text-align: center; padding-top: 30px; }
-header h1 { text-transform: uppercase; font-weight: 700; }
-header .logo { width: 50px; }
+header { text-align: center; }
+header .logo { display: inline-block; position: relative; margin: 30px 0; }
+header .logo img { width: 50px; position: absolute; top: 0; left: 27px; -ms-transform: rotate(-3deg); /* IE 9 */ -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */ transform: rotate(-3deg); }
+header .logo h1 { font-weight: normal; margin: 20px 0 0; font-family: 'brusher'; color: #231f20; }
+header .logo h6 { text-transform: uppercase; margin: 0; color: #777; font-weight: 300; font-style: italic; }
