@@ -155,11 +155,12 @@ var Users = React.createClass({
       //url: 'https://graph.microsoft.com/v1.0/me?' +
       url: 'https://graph.microsoft.com/beta/users?' +
       //'&$expand=skills' +
-      '&$select=id,displayName,department,mail,city,country,businessPhones,mobilePhone' +
+      '&$select=id,displayName,department,mail,city,country,businessPhones,mobilePhone,accountEnabled,assignedLicenses' +
       //'&$select=skills' +
       '&$top=500' +
       '&$orderBy=displayName' +
-      //'&$top=20',
+      //'&$top=20' + 
+      //'&$filter=accountEnabled+eq+true' +
       //'&$filter=City lt \'0\'',
       //'&$filter=Country eq \'Sweden\' or Country eq \'Sverige\'',
       '',
@@ -170,16 +171,21 @@ var Users = React.createClass({
       var myUsers = [];
     
        data.value.forEach(function(userInfo) {
-        myUsers.push({
-            id: userInfo.id,
-            displayName: userInfo.displayName,
-            department: userInfo.department,
-            email: userInfo.mail,
-            phone: userInfo.mobilePhone || userInfo.businessPhones[0],
-            city: userInfo.city || "۬ܢ No city",
-            imageUrl: null,
-            skills: []
-          });
+          console.log(userInfo);
+       if(userInfo.accountEnabled == true && userInfo.mail != null && userInfo.mail.indexOf("consid.se") !== -1
+       && userInfo.assignedLicenses.length > 0)
+       { 
+          myUsers.push({
+              id: userInfo.id,
+              displayName: userInfo.displayName,
+              department: userInfo.department,
+              email: userInfo.mail,
+              phone: userInfo.mobilePhone || userInfo.businessPhones[0],
+              city: userInfo.city || "۬ܢ No city",
+              imageUrl: null,
+              skills: []
+            });
+        
          
          if(loadUserPictures)
          {
@@ -198,21 +204,22 @@ var Users = React.createClass({
             });
         }
       
-        if(loadUserDetails)
-        {
-            getUserDetails(userInfo.id).then(function(userDetails) {
-                component.setState(function(previousState, curProps) {
-                for (var i = 0; i < previousState.users.length; i++) {
-                    var u = previousState.users[i];
-                    if (u.id === userDetails.id) {
-                    u.skills = userDetails.details['skills'] || [];
-                    break;
-                    }
-                }
-                });
-            }, function(err) {
-                console.error(err);
-            });
+          if(loadUserDetails)
+          {
+              getUserDetails(userInfo.id).then(function(userDetails) {
+                  component.setState(function(previousState, curProps) {
+                  for (var i = 0; i < previousState.users.length; i++) {
+                      var u = previousState.users[i];
+                      if (u.id === userDetails.id) {
+                      u.skills = userDetails.details['skills'] || [];
+                      break;
+                      }
+                  }
+                  });
+              }, function(err) {
+                  console.error(err);
+              });
+          }
         }  
                     
       }, this);
