@@ -95,9 +95,22 @@
 }
 
 
-.ms-font-xl {
-	border-bottom: 1px solid #cecece;
-	padding-bottom: 15px;
-	display: inline-block;
+.ms-font-s-plus {
 	color: $grey;
+	font-family: 'brusher';
+	font-size: 2em;
+}
+
+.contentbox {
+	.ms-font-xl {
+		border-bottom: 1px solid #cecece;
+		display: inline-block;
+		color: $grey;
+	    padding-top: 60px;
+	}
+	&:first-child {
+		.ms-font-xl {
+		    padding-top: 0;
+		}
+	}
 }
