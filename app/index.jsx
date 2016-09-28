@@ -12,13 +12,16 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      	<header>
+      	<header id="top">
+          <div className="ms-Grid">
             <div className="logo">
               <img src="assets/images/logo.svg" alt="People Consid" />
               <h1>people</h1>
               <h6>find heroes @ consid</h6>
             </div>
+          </div>
         </header>
+        <a className="top" href="#top" rel="relativeanchor"><i className="fa fa-chevron-up" aria-hidden="true"></i></a>
         <Users />
       </div>
     );

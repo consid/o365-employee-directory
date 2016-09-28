@@ -10,6 +10,7 @@
  * Table of Contents:
  *
  * 1.0 - spinner
+ * 2.0 - top (reach top of site)
  * -----------------------------------------------------------------------------
  */
 
@@ -21,8 +22,45 @@
 
  .spinner {
  	margin: 0 auto;
- 	width: 7em;
+ 	width: 100%;
+ 	text-align: center;
+
  	img {
  		vertical-align: middle;
+ 		width: 50px;
+ 		display: inline-block;
+ 		margin: 0 auto;
+ 		padding-bottom: 20px;
+ 	}
+ 	span {
+ 		display: block;
+ 		width: 100%;
+ 		text-align: center;
  	}
  }
+
+
+/**
+ * 2.0 - top (reach top of site)
+ * -----------------------------------------------------------------------------
+ */
+
+.top {
+	padding: 20px;
+	width: auto;
+	position: fixed;
+	bottom: -50px;
+	right: 0px;
+	text-align: right;
+	color: $grey;
+	opacity: 0;
+	visibility: hidden;
+	@include transition(0.5s);
+	z-index: 3;
+
+	&.active {
+		opacity: 1;
+		bottom: 0px;
+		visibility: visible;
+	}
+}

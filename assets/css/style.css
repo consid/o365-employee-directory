@@ -502,11 +502,18 @@ body {
     .ms-Persona .ms-Link:hover, .ms-Persona .ms-Link:active, .ms-Persona .ms-Link:focus {
       color: #635a5c; }
 
-.ms-font-xl {
+.ms-font-s-plus {
+  color: #777;
+  font-family: 'brusher';
+  font-size: 2em; }
+
+.contentbox .ms-font-xl {
   border-bottom: 1px solid #cecece;
-  padding-bottom: 15px;
   display: inline-block;
-  color: #888; }
+  color: #777;
+  padding-top: 60px; }
+.contentbox:first-child .ms-font-xl {
+  padding-top: 0; }
 
 /**
  * Extra
@@ -519,6 +526,7 @@ body {
  * Table of Contents:
  *
  * 1.0 - spinner
+ * 2.0 - top (reach top of site)
  * -----------------------------------------------------------------------------
  */
 /**
@@ -527,9 +535,42 @@ body {
  */
 .spinner {
   margin: 0 auto;
-  width: 7em; }
+  width: 100%;
+  text-align: center; }
   .spinner img {
-    vertical-align: middle; }
+    vertical-align: middle;
+    width: 50px;
+    display: inline-block;
+    margin: 0 auto;
+    padding-bottom: 20px; }
+  .spinner span {
+    display: block;
+    width: 100%;
+    text-align: center; }
+
+/**
+ * 2.0 - top (reach top of site)
+ * -----------------------------------------------------------------------------
+ */
+.top {
+  padding: 20px;
+  width: auto;
+  position: fixed;
+  bottom: -50px;
+  right: 0px;
+  text-align: right;
+  color: #777;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  z-index: 3; }
+  .top.active {
+    opacity: 1;
+    bottom: 0px;
+    visibility: visible; }
 
 /**
  * Input
